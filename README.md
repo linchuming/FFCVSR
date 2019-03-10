@@ -8,7 +8,7 @@ For video super-resolution, current state-of-the-art approaches either process m
 In this paper, we propose a fully end-to-end trainable frame and feature-context video super-resolution (FFCVSR) network that consists of two key sub-networks: local network and context network, where the first one explicitly utilizes a sequence of consecutive LR frames to generate local feature and local SR frame, and the other combines the outputs of local network and the previously estimated HR frames and features to super-resolve the subsequent frame. Our approach takes full advantage of the inter-frame information from multiple LR frames and the context information from previously predicted HR frames, producing temporally consistent high-quality results while maintaining real-time speed by directly reusing previous features and frames. Extensive evaluations and comparisons demonstrate that our approach produces state-of-the-art results on a standard benchmark dataset, with advantages in terms of accuracy, efficiency, and visual quality over the existing approaches.
 ### Citation
 ```
-[1]  @inproceedings{bo2019ffcvsr,
+[1]  @inproceedings{ffcvsr,
          author = {Bo Yan, Chuming Lin, and Weimin Tan},
          title = {Frame and Feature-Context Video Super-Resolution},
          booktitle = {AAAI},
