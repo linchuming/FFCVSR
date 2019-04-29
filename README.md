@@ -1,4 +1,4 @@
-# FFCVSR
+# FFCVSR (AAAI 2019)
 AAAI 2019 paper "Frame and Feature-Context Video Super-Resolution" [1]  
 [Paper](FFCVSR.pdf)  
   
