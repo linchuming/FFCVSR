@@ -1,4 +1,8 @@
 # FFCVSR (AAAI 2019)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)][license]
+
+[license]: https://github.com/linchuming/FFCVSR/blob/master/LICENSE
+
 AAAI 2019 paper "Frame and Feature-Context Video Super-Resolution" [1]  
 [Paper](FFCVSR.pdf)  
 
