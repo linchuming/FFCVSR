@@ -6,7 +6,8 @@
 AAAI 2019 paper "Frame and Feature-Context Video Super-Resolution" [1]  
 [Paper](https://aaai.org/ojs/index.php/AAAI/article/view/4502)  
 
-[![](images/framework.png)]
+![](images/framework.png)
+
 **FFCVSR-motion** is a improved version for **FFCVSR**, which adds motion prediction, feature alignment and gate selection.
 The new version paper is submited to TPAMI 2020 and under review.
 
@@ -53,7 +54,7 @@ python train_REDS_FFCVSR_motion.py
 ```
 
 ### VID4 Dataset Performance
-[![](images/performance.png)]
+![](images/performance.png)
 
 | Methods       | Training Dataset | PSNR  | SSIM  | Inference Time |
 | ------------- | ---------------- | ----- | ----- | -------------- |
