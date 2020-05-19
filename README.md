@@ -4,25 +4,66 @@
 [license]: https://github.com/linchuming/FFCVSR/blob/master/LICENSE
 
 AAAI 2019 paper "Frame and Feature-Context Video Super-Resolution" [1]  
-[Paper](FFCVSR.pdf)  
+[Paper](https://aaai.org/ojs/index.php/AAAI/article/view/4502)  
+
+[![](images/framework.png)]
+**FFCVSR-motion** is a improved version for **FFCVSR**, which adds motion prediction, feature alignment and gate selection.
+The new version paper is submited to TPAMI 2020 and under review.
 
 ### Code
 
-We release the new FFCVSR with optical flow enhanced version (better performance than original FFCVSR)
+We release **FFCVSR** and **FFCVSR-motion** inference model and **FFCVSR-motion** training code in REDS dataset.
 
-The environment is:
+Our testing environment is:
 
-- TensorFlow >= 1.6
-- Anaconda 3
+- TensorFlow == 1.9
+- Python 3.6
+- NVIDIA GTX 1080Ti
 
-The model ckpt can be download by google driver: https://drive.google.com/open?id=1yLZVNSPxbqZF0UjeHij2HyH-U2u1M3N4
+### Inference
 
-Run script and get the results: `python test_vid4.py`
+1. Download the pretrained checkpoints from WeiYun: https://share.weiyun.com/sEHySs5d
 
-### Abstract
-For video super-resolution, current state-of-the-art approaches either process multiple low-resolution (LR) frames to produce each output high-resolution (HR) frame separately in a sliding window fashion or recurrently exploit the previously estimated HR frames to super-resolve the following frame. The main weaknesses of these approaches are: 1) separately generating each output frame may obtain high-quality HR estimates while resulting in unsatisfactory flickering artifacts, and 2) combining previously generated HR frames can produce temporally consistent results in the case of short information flow, but it will cause significant jitter and jagged artifacts because the previous super-resolving errors are constantly accumulated to the subsequent frames.   
-In this paper, we propose a fully end-to-end trainable frame and feature-context video super-resolution (FFCVSR) network that consists of two key sub-networks: local network and context network, where the first one explicitly utilizes a sequence of consecutive LR frames to generate local feature and local SR frame, and the other combines the outputs of local network and the previously estimated HR frames and features to super-resolve the subsequent frame. Our approach takes full advantage of the inter-frame information from multiple LR frames and the context information from previously predicted HR frames, producing temporally consistent high-quality results while maintaining real-time speed by directly reusing previous features and frames. Extensive evaluations and comparisons demonstrate that our approach produces state-of-the-art results on a standard benchmark dataset, with advantages in terms of accuracy, efficiency, and visual quality over the existing approaches.
+2. Testing model in VID4 dataset
+```buildoutcfg
+# testing FFCVSR model
+python test_VID4_FFCVSR.py
+
+# testing FFCVSR-motion model
+python test_VID4_FFCVSR_motion.py
+
+# compile inverse_warp cuda verison to speed up the FFCVSR-motion model if the OS is linux
+cd custom_op
+make
+```
+
+### Training
+1. Download the REDS dataset (sharp type): https://seungjunnah.github.io/Datasets/reds
+
+2. Put the REDS dataset in `datasets/REDS `
+
+3. Generate tfrecords for REDS:
+```buildoutcfg
+python tfrecords/gen_REDS_tfrecords.py
+```
+
+4. Train the FFCVSR-motion
+```buildoutcfg
+python train_REDS_FFCVSR_motion.py
+```
+
+### VID4 Dataset Performance
+[![](images/performance.png)]
+
+| Methods       | Training Dataset | PSNR  | SSIM  | Inference Time |
+| ------------- | ---------------- | ----- | ----- | -------------- |
+| FFCVSR        | Internet Videos  | 26.97 | 0.815 | 28.4 ms        |
+| FFCVSR-motion | REDS sharp       | 27.15 | 0.821 | 38.6 ms        |
+
+
+
 ### Citation
+
 ```
 [1]  @inproceedings{ffcvsr,
          author = {Bo Yan, Chuming Lin, and Weimin Tan},

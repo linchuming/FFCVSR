@@ -1,6 +1,6 @@
 /model_ckpt
-/result
-
+/results
+.idea
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
